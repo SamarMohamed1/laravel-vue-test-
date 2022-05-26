@@ -45,6 +45,12 @@ export default {
         return{
             items:[],//aly b loop 3leha fo2
             readMore: {},//for see more feature
+            token1:{},
+            token2:{},
+            name:'',
+            email:'',
+            password:''
+
 
         };
     },
@@ -74,11 +80,11 @@ export default {
         },
         showLess(id) {
             this.$set(this.readMore, id, false);
-        },
-
-    }
-    
+        }
+       
 }
+}
+
 </script>
 
 <style scoped>

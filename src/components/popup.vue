@@ -1,16 +1,58 @@
 <template>
     <div id="app-popup">
-        <button class="button" @click="showModal = true">
-        Show Modal
+        <button class="button mx-2" @click="showModal1 = true " >
+        Login
         </button>
-        <transition name="fade" appear>
-        <div class="modal-overlay" v-if="showModal" @click="showModal = false">
-             <h1>Lorem Ipsum</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?
-                pisicing elit. Voluptatem provident explicabo accusamus laudantiumpisicing elit. Voluptatem provident explicabo accusamus laudantium
-            </p>
-            <button class="button" @click="showModal = true">
-                Close Modal
+        <button class="button" @click="showModal2 = true " >
+        Register
+        </button>
+        <!--form login-->
+        <transition class="fade-enter-active" appear>
+        <div class="modal-overlay-content bg-light" v-if="showModal1" >
+           <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control p-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control p-3" id="exampleInputPassword1" placeholder="Password">
+                </div>
+               
+                <button type="button" @click="Login()" class="btn btn-info my-3 p-2">Login</button>
+            </form>
+            <!--closing button-->
+              <button class="button cancel" @click="showModal1 = false ">
+                Cancel 
+            </button>
+        </div>
+        </transition>
+        <!--form register-->
+        <transition class="fade" appear>
+        <div class="modal-overlay-content bg-light" v-if="showModal2" >
+           <form>
+                <div class="form-group">
+                    <label for="name">name</label>
+                    <input type="text" v-model="name" class="form-control p-3" id="name"  placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email"  v-model="email" class="form-control p-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                 <!-- <div class="form-group">
+                    <label for="phone">Email address</label>
+                    <input type="number" class="form-control p-3" id="phone"  placeholder="Enter phone">
+                </div> -->
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password"  v-model="password" class="form-control p-3" id="exampleInputPassword1" placeholder="Password">
+                </div>
+               
+                <button type="button" @click="register()" class="btn btn-info my-3 p-2">Register</button>
+            </form>
+            <!--closing button-->
+              <button class="button cancel" @click="showModal2 = false">
+                Cancel 
             </button>
         </div>
         </transition>
@@ -28,17 +70,54 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name:'app-popup',
    data(){
         return{
-          showModal: false
+          showModal1: false,
+          showModal2:false,
+          disable:false,
+          name:'',
+          email:'',
+          password:''
         };
     },
     methods:{
-     
 
-    }
+    async Login(){
+              try {
+                const response =await axios.post('http://localhost:8000/api/login');
+                this.token1=response;
+                console.log(response)
+              
+            } catch (error) {
+                console.log(error);
+            }
+        },
+          async register(){
+              try {
+                const response =await axios.post('http://localhost:8000/api/register',{
+                  name:this.name,
+                  email:this.email,
+                  password:this.password
+                });
+
+                 this.name='';
+                 this.email='';
+                 this.password='';
+                //  this.$router.push('/');
+                this.token2=response.data;
+                console.log(response.data)
+            } catch (error) {
+                console.log(error);
+            }
+              
+                
+        }
+    
+}
 }
 </script>
 
@@ -68,26 +147,36 @@ body {
     background: none;
     cursor: pointer;
     display: inline-block;
-    padding: 15px 25px;
+    padding: 10px 15px;
     background-image: linear-gradient(to right, #cc2e5d, #ff5858);
     border-radius: 8px;
     color: #fff;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 500;
     box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
     transition: 0.4s ease-out;
+}
+.cancel{
+        float: right;
+
 }
 .button:hover {
     box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
 }
-.modal-overlay {
+.modal-overlay-content {
     position: absolute;
-    top: 0;
+    position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
     z-index: 98;
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(240, 221, 221, 0.897); */
+    margin: auto;
+    width: 60%;
+    border: 5px solid #c5c5c1;
+    padding: 10px;
+    border-radius: 16px;
+    transform: translate(3ch, 3mm);
+
 }
  .modal {
     position: fixed;
@@ -114,7 +203,7 @@ body {
     margin-bottom: 15px;
 }
 .fade-enter-active, .fade-leave-active {
-	transition: opacity 0.5s;
+	transition: opacity 1.5s;
 }
  .fade-enter, .fade-leave-to {
 	opacity: 0;

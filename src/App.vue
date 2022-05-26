@@ -1,16 +1,21 @@
 <template>
-  <div id="app" class="container">
-    <router-view/>
-    <!-- <popup/> -->
+  <div id="app">
+        <navbar/>
+        <popup/>
+
+    <router-view  class="container"/>
   </div>
 </template>
 
 <script>
-// import popup from './components/popup.vue'
+import Navbar from './components/navbar.vue'
+import popup from './components/popup.vue'
 export default {
   name: 'App',
   components: {
-    // popup
+    Navbar,
+    popup
+   
   }
 }
 </script>
@@ -22,6 +27,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
+
 </style>
