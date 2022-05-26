@@ -1,14 +1,16 @@
 <template>
   <div id="app" class="container">
     <router-view/>
+    <!-- <popup/> -->
   </div>
 </template>
 
 <script>
-
+// import popup from './components/popup.vue'
 export default {
   name: 'App',
   components: {
+    // popup
   }
 }
 </script>
