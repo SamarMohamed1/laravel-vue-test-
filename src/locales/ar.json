@@ -1,0 +1,16 @@
+{
+  "welcomeMsg":"اهلا بك ",
+  "home":"الرئيسية",
+  "link":"الوصول",
+  "name":"الاسم",
+  "price":"السعر",
+  "Description":"التفاصيل",
+  "Action":"الحدث",
+  "Delete":"حذف",
+  "Edit":"تعديل",
+  "show more":"عرض المزيد",
+  "show less":"عرض اقل",
+  "Add Book":"اضافة كتاب",
+  "Login":"الدخول",
+  "Register":"تسجيل الدخول"
+  }

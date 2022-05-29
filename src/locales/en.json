@@ -1,0 +1,16 @@
+{
+  "welcomeMsg":"welcome here",
+  "home":"home",
+  "link":"link",
+  "name":"name",
+  "price":"price",
+  "Description":"description",
+  "Action":"action",
+  "Delete":"Delete",
+  "Edit":"Edit",
+  "show more":"Show More",
+  "show less":"Show Less",
+  "Add Book":"Add Book",
+  "Login":"Login",
+  "Register":"Register"
+ }

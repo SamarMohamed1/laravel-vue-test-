@@ -1,10 +1,10 @@
 <template>
     <div id="app-popup">
         <button class="button mx-2" @click="showModal1 = true " >
-        Login
+        {{$t("Login")}} 
         </button>
         <button class="button" @click="showModal2 = true " >
-        Register
+        {{$t("Register")}}
         </button>
         <!--form login-->
         <transition class="fade-enter-active" appear>

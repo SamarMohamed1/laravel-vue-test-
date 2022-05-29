@@ -5,12 +5,16 @@ import index from './components/BookList.vue'
 import create from './components/AddBook.vue'
 import edit from './components/EditBook.vue'
 import VueRouter from 'vue-router'
+import i18n from './i18n'
+import axios from 'axios'
 
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 
 const routes=[
+
+  
   {
     name:'create',
     path:'/create',
@@ -29,9 +33,12 @@ const routes=[
 
 ];
 const router =new VueRouter({mode:'history',routes:routes})
-
+const lang=localStorage.getItem('lang') || 'en';
+axios.defaults.headers['Accept-Language']=lang;
+document.documentElement.lang=lang;
 
 new Vue({
   router,
-  render: h => h(App),
+  i18n,
+  render: h => h(App)
 }).$mount('#app')

@@ -1,14 +1,14 @@
 <template>
     <div>
-       <router-link class="btn btn-success m-4" :to="{name: 'create'}">Add Book</router-link>
+       <router-link class="btn btn-success m-4" :to="{name: 'create'}">{{$t("Add Book")}}</router-link>
 
        <table class="table">
   <thead>
     <tr>
-      <th scope="col">name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Description</th>
-      <th scope="col">Action</th>     
+      <th scope="col">{{$t("name")}}</th>
+      <th scope="col">{{$t("price")}}</th>
+      <th scope="col">{{$t("Description")}}</th>
+      <th scope="col">{{$t("Action")}}</th>     
 
     </tr>
   </thead>
@@ -19,17 +19,17 @@
       <!-- <td>{{item.description}}</td> -->
 
         <td v-if="!readMore[item.id]">{{item.description.substring(0, 100)}}
-            <p @click="showMore(item.id)" v-if="!readMore[item.id]&&item.description.length > 150" class="pointer">...Show more</p>
+            <p @click="showMore(item.id)" v-if="!readMore[item.id]&&item.description.length > 150" class="pointer">...{{$t("show more")}}</p>
         </td>
         <td v-if="readMore[item.id]">{{item.description}}
-             <p @click="showLess(item.id)" v-if="readMore[item.id]" class="pointer">Show less</p>
+             <p @click="showLess(item.id)" v-if="readMore[item.id]" class="pointer">{{$t("show less")}}</p>
         </td>
 
 
         <!--action buttons-->
       <td>
-          <button type="button" class="btn btn-danger mx-2" @click="daleteBook(item.id)">Delete</button>
-          <router-link :to="{name: 'Edit',params:{id:item.id}}" class="btn btn-warning">Edit</router-link>
+          <button type="button" class="btn btn-danger mx-2" @click="daleteBook(item.id)">{{$t("Delete")}}</button>
+          <router-link :to="{name: 'Edit',params:{id:item.id}}" class="btn btn-warning">{{$t("Edit")}}</router-link>
       </td>
     </tr>
   </tbody>
@@ -39,6 +39,9 @@
 
 <script>
 import axios from "axios";
+// import en from '../en';
+// import ar from '../ar';
+
 export default {
     name:'BookList',
     data(){
@@ -49,7 +52,8 @@ export default {
             token2:{},
             name:'',
             email:'',
-            password:''
+            password:'',
+            lang:"en",
 
 
         };
