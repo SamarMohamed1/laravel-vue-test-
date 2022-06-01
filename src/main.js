@@ -7,6 +7,15 @@ import edit from './components/EditBook.vue'
 import VueRouter from 'vue-router'
 import i18n from './i18n'
 import axios from 'axios'
+import Vuelidate from 'vuelidate'
+
+Vue.use(Vuelidate);
+
+// import {ValidateObserver} from 'vee-validate'
+// import {ValidationProvider} from 'vee-validate/dist/vee-validate.ful.esm'
+
+// Vue.component('ValidationProvider',ValidationProvider);
+// Vue.component('ValidateObserver',ValidateObserver);
 
 Vue.use(VueRouter)
 
